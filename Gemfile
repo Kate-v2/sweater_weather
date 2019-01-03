@@ -23,6 +23,7 @@ gem 'fast_jsonapi'
 
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw] # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -33,10 +33,14 @@ end
 
 require 'simplecov'
 SimpleCov.start "rails" do
-  add_filter 'app/channels/application_cable/channel.rb'
-  add_filter 'app/channels/application_cable/connection.rb'
-  add_filter 'app/helpers/application_helper.rb'
-  add_filter 'app/jobs/application_job.rb'
+  add_filter'/bin/'
+  add_filter'/db/'
+  add_filter'/spec/'
+  add_filter'/config/'
+  add_filter'/app/channels/'
+  add_filter'app/jobs/'
+  add_filter'app/mailers/'
+  add_filter'app/helpers/'
 end
 
 Shoulda::Matchers.configure do |config|
@@ -56,8 +60,8 @@ require 'webmock/rspec'
 #   config.configure_rspec_metadata!
 #   # config.filter_sensitive_data("<google_key>") { ENV['google_key'] }
 # end
-
-
+require './spec/fixtures/stub_geocode_denver'
+require 'capybara/rails'
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures" # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.use_transactional_fixtures = true              # If you're not using ActiveRecord, or you'd prefer not to run each of your # examples within a transaction, remove the following line or assign false # instead of true.
@@ -67,5 +71,10 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!            # The different available types are documented in the features, such as in # https://relishapp.com/rspec/rspec-rails/docs
   config.filter_rails_from_backtrace!                   # Filter lines from Rails gems in backtraces.
                                                         # arbitrary gems may also be filtered via: # config.filter_gems_from_backtrace("gem name")
+  config.include Capybara::DSL
+  Capybara.default_host = 'http://localhost:3000'
   config.include FactoryBot::Syntax::Methods
+
+  include StubGeocodeDenver
+
 end
