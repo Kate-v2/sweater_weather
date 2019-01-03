@@ -61,6 +61,7 @@ require 'webmock/rspec'
 #   # config.filter_sensitive_data("<google_key>") { ENV['google_key'] }
 # end
 require './spec/fixtures/stub_geocode_denver'
+require './spec/fixtures/stub_dark_sky_denver'
 require 'capybara/rails'
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures" # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -76,5 +77,6 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   include StubGeocodeDenver
+  include StubDarkSkyDenver
 
 end
