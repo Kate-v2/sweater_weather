@@ -5,9 +5,6 @@ class DailyGifSerializer
 
   attribute :id
 
-  attribute :gif do |gif|
-    DayGifSerializer.new(gif)
-  end
-
+  attributes :time, :summary, :url
 
 end

@@ -28,9 +28,8 @@ describe 'Gifs' do
     set       = data[:attributes]
     copyright = set[:copyright]
     gifs      = set[:daily_forecast][:data]
-
-    # TODO - I can probably remove on of my serializers:
-    gif       =  gifs.first[:attributes][:gif][:data][:attributes]
+    
+    gif       = gifs.first[:attributes]
     time      = gif[:time]
     summary   = gif[:summary]
     url       = gif[:url]
