@@ -7,7 +7,7 @@ class GiphyService
     @base_url = 'https://api.giphy.com/v1/gifs/'
     @filter   = filter
     @target   = filter[:target]
-    @term     = filter[:term]
+
   end
 
 
@@ -29,11 +29,15 @@ class GiphyService
   end
 
   def key_param
-    "?api_key=#{ENV['giphy_key']}"
+    "?api_key=#{ ENV['giphy_key'] }"
   end
 
   def query_term
-    "&q=#{@term}"
+    "&q=#{ term }"
+  end
+
+  def term
+    @term ||= @filter[:term]
   end
 
   def limit

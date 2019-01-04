@@ -12,9 +12,20 @@ class GifHelper
 
   # use summary field for each day
 
-  def giphy_objects
-    
+  def daily_gifs
+    @days.map { |day|
+      get_gifs( day.summary )
+      Gif.new(day, url)
+    }
+  end
 
+
+  def get_gifs(term)
+    GiphyService.new( daily_gif_target(term) )
+  end
+
+  def daily_gif_target(term)
+    { target: :search, term: (term) }
   end
 
 
