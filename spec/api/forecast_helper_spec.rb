@@ -17,11 +17,5 @@ describe "ForecastHelper" do
     expect(klass).to eq(ForecastHelper)
   end
 
-  it 'gets coordinates' do
-    coords = helper.get_coordinates
-    expect(coords).to eq(coordinates)
-  end
-
-
 
 end

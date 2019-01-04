@@ -1,23 +1,40 @@
 
 class Coordinates
 
+  attr_reader :city, :state, :country
+
   def initialize(raw)
-    @raw  = raw
-    @location = raw[:results].first[:geometry][:location]
+    @data        = raw[:results].first
+    @coordinates = @data[:geometry][:location]
+    @location    = @data[:address_components]
+
+    # make this more dynamic --> dig ?
+    @city    = @location[0]
+    # @county  = @location[1]
+    @state   = @location[2]
+    @country = @location[3]
   end
 
   def pair
     "#{lat},#{lng}"
   end
 
+  # These can be left as hashes
+  # def city #   @city[:long_name] # end
+  # def state_long #   @state[:long_name] # end
+  # def state_short #   @state[:short_name] # end
+  # def country_long #   @county[:long_name] # end
+  # def country_short #   @county[:long_name] # end
+
+
   private
 
   def lat
-    @location[:lat]
+    @coordinates[:lat]
   end
 
   def lng
-    @location[:lng]
+    @coordinates[:lng]
   end
 
 end
