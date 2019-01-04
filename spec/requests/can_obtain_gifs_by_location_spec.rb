@@ -2,10 +2,6 @@ require 'rails_helper'
 
 describe 'Gifs' do
 
-  let(:day1_file)  { File.read( stub_gif_day1_denver_path ) }
-  let(:day1)       { JSON.parse( file, symbolize_names: true )[:data].first }
-
-
   before(:each) do
     stub_geocode_denver
     stub_dark_sky_denver
@@ -27,17 +23,24 @@ describe 'Gifs' do
     expect(response).to be_successful
     json = JSON.parse(response.body, symbolize_names: true)
 
-    binding.pry
+    # Fast JSON is a pain....
+    data      = json[:data]
+    set       = data[:attributes]
+    copyright = set[:copyright]
+    gifs      = set[:daily_forecast][:data]
 
-    expect(json[:copyright]).to eq('2018')
+    # TODO - I can probably remove on of my serializers:
+    gif       =  gifs.first[:attributes][:gif][:data][:attributes]
+    time      = gif[:time]
+    summary   = gif[:summary]
+    url       = gif[:url]
 
-    gifs = json[:data][:forecast]
-    expect(gif.count).to eq(8)
+    expect(copyright).to  eq(2019)
+    expect(gifs.count).to eq(8)
 
-    gif  = gifs.first
-    expect(gif[:time]).to    eq()
-    expect(gif[:summary]).to eq()
-    expect(gif[:url]).to eq(day1[:url])
+    expect(time).to    eq(1546498800)
+    expect(summary).to eq("Clear throughout the day.")
+    expect(url).to     eq("https://giphy.com/gifs/water-ocean-sea-ivcVZnZAEqhs4")
   end
 
 end
@@ -48,40 +51,3 @@ end
 #         summary: "Mostly sunny in the morning.",
 #         url: "<GIPHY_URL_GOES_HERE>"
 #       }
-
-
-{
-  :id=>"0",
-  :type=>"daily_gifs",
-  :attributes=>
-     {
-      :id=>0,
-      :dialy_forecast=>
-        {:data=>
-          {
-            :id=>"0",
-            :type=>"daily_gif",
-            :attributes=>
-              {
-                :id=>0,
-                :dialy_forecast=>
-                  {
-                    :data=>
-                      {
-                        :id=>"0",
-                        :type=>"day_gif",
-                        :attributes=>
-                          {
-                            :id=>0,
-                            :time=>1546498800,
-                            :summary=>"Clear throughout the day.",
-                            :url=>"https://giphy.com/gifs/water-ocean-sea-ivcVZnZAEqhs4"
-                          }
-                      }
-                  }
-              }
-          }
-        },
-      :copyright=>2019
-    }
-}

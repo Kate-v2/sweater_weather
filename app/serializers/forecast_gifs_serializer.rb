@@ -5,7 +5,7 @@ class ForecastGifsSerializer
 
   attribute :id
 
-  attribute :dialy_forecast do |arr|
+  attribute :daily_forecast do |arr|
     gifs = arr.collection
     DailyGifSerializer.new(gifs)
   end
