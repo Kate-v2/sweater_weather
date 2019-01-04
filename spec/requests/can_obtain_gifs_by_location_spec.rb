@@ -27,6 +27,8 @@ describe 'Gifs' do
     expect(response).to be_successful
     json = JSON.parse(response.body, symbolize_names: true)
 
+    binding.pry
+
     expect(json[:copyright]).to eq('2018')
 
     gifs = json[:data][:forecast]
@@ -46,3 +48,40 @@ end
 #         summary: "Mostly sunny in the morning.",
 #         url: "<GIPHY_URL_GOES_HERE>"
 #       }
+
+
+{
+  :id=>"0",
+  :type=>"daily_gifs",
+  :attributes=>
+     {
+      :id=>0,
+      :dialy_forecast=>
+        {:data=>
+          {
+            :id=>"0",
+            :type=>"daily_gif",
+            :attributes=>
+              {
+                :id=>0,
+                :dialy_forecast=>
+                  {
+                    :data=>
+                      {
+                        :id=>"0",
+                        :type=>"day_gif",
+                        :attributes=>
+                          {
+                            :id=>0,
+                            :time=>1546498800,
+                            :summary=>"Clear throughout the day.",
+                            :url=>"https://giphy.com/gifs/water-ocean-sea-ivcVZnZAEqhs4"
+                          }
+                      }
+                  }
+              }
+          }
+        },
+      :copyright=>2019
+    }
+}
