@@ -12,7 +12,10 @@ class GifHelper
 
   # use summary field for each day
 
+  def giphy_objects
+    
 
+  end
 
 
 
