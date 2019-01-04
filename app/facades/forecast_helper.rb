@@ -2,8 +2,7 @@
 class ForecastHelper
 
   def initialize( location )
-    @location = location
-    get_location
+    @city_state = location
   end
 
   def forecast_endpoint
@@ -15,27 +14,27 @@ class ForecastHelper
   # --- Forecast ---
 
   def current
-    @current ||= Currently.new( @forecast[:currently] )
+    @_current ||= Currently.new( get_forecast[:currently] )
   end
 
   def today
-    @today ||= Today.new( @forecast[:daily][1] )
+    @_today ||= Today.new( get_forecast[:daily][:data][1] )
   end
 
   def forecast
-    @forecast ||= Forecast.new( @forecast[:daily] )
+    @_forecast ||= Forecast.new( get_forecast )
   end
 
   # NOTE - forecast will not include null values does not include key if no data
   # ==== KEYS are NOT always the same! ====
   def get_forecast
-    @forecast ||= DarkSkyService.new( forecast_target )
+    @_darksky ||= DarkSkyService.new( forecast_target ).target_data
   end
 
   def forecast_target
     target = { target: :forecast, location: get_coordinates }
   end
-  
+
 
   # --- Location ----
 
@@ -44,15 +43,15 @@ class ForecastHelper
   end
 
   def location
-    @location ||= Coordinates.new( @google )
+    @_location_obj ||= Coordinates.new( get_location )
   end
 
   def get_location
-    @google ||= GoogleService.new( location_target ).target_data
+    @_google ||= GoogleService.new( location_target ).target_data
   end
 
   def location_target
-    target = { target: :address, location: @location }
+    target = { target: :address, location: @city_state }
   end
 
 
