@@ -14,11 +14,20 @@ class GifHelper
 
   def daily_gifs
     @days.map { |day|
-      get_gifs( day.summary )
+      url = gif_url( day.summary )
       Gif.new(day, url)
     }
   end
 
+  private
+
+  def gif_url(term)
+    get_gif.url
+  end
+
+  def get_gif(term)
+    GiphyGifRaw.new( get_gifs(term) )
+  end
 
   def get_gifs(term)
     GiphyService.new( daily_gif_target(term) )
@@ -27,10 +36,6 @@ class GifHelper
   def daily_gif_target(term)
     { target: :search, term: (term) }
   end
-
-
-
-
 
 end
 

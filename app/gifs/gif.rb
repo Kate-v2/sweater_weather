@@ -2,16 +2,17 @@
 
 class Gif
 
-  def initialize( day )
-    @day = day
+  attr_reader :url, :time, :summary
 
-    @time = day.time
-    @summary = day.summary
+  def initialize( day, url )
+    @url     = url
+    @day     = day
+    @time    = day.time
     @summary = day.summary
   end
 
 
-  
+
 
 
 
