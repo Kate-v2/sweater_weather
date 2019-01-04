@@ -6,6 +6,7 @@ class Forecast
   def initialize( data )
     @data       = data
     @daily      = data[:daily]
+    @daily_set  = @daily[:data]
     @hourly     = data[:hourly]
     @hourly_set = @hourly[:data]
   end
@@ -16,7 +17,7 @@ class Forecast
   # Might want to filter by beyond current time
 
   def days # Includes Yesterday  -- 8 days of data
-    @days ||= @daily.map { |day| Day.new(day) }
+    @days ||= @daily_set.map { |day| Day.new(day) }
   end
 
   private

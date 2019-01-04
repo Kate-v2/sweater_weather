@@ -10,11 +10,6 @@ class ForecastHelper
     ForecastEndpoint.new( current, today, forecast, location )
   end
 
-  # make private, update test
-  def get_coordinates
-    location.pair
-  end
-
   private
 
   # --- Forecast ---
@@ -40,8 +35,13 @@ class ForecastHelper
   def forecast_target
     target = { target: :forecast, location: get_coordinates }
   end
+  
 
   # --- Location ----
+
+  def get_coordinates
+    location.pair
+  end
 
   def location
     @location ||= Coordinates.new( @google )

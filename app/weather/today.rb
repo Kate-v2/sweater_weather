@@ -2,11 +2,19 @@
 
 class Today
 
-  attr_reader :summary, :icon, :low, :high, :humidity, :visibility, :uv_index
+  attr_reader :time,
+              :summary,
+              :icon,
+              :low,
+              :high,
+              :humidity,
+              :visibility,
+              :uv_index
 
   def initialize( data )
     @data = data
 
+    @time    = data[:time]
     @summary = data[:summary]
     @icon    = data[:icon]
 
@@ -18,7 +26,7 @@ class Today
     @humidity   = data[:humidity]
     @visibility = data[:visibility]
     @uv_index   = data[:uvIndex]
-    
+
     # morning & night descriptions must come from hourly ?
   end
 

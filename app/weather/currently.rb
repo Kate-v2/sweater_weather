@@ -1,6 +1,8 @@
 
 class Currently
 
+  attr_reader :time, :summary, :icon, :temperature, :feels_like
+
   def initialize( data )
     @data = data
 
