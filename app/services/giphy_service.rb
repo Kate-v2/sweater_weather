@@ -4,11 +4,10 @@ class GiphyService
   # make a simple_service.rb class for these to inherit from
 
   def initialize(filter)
-    @base_url = 'https://api.giphy.com/v1/gifs/'
+    @base_url = "https://api.giphy.com"
     @filter   = filter
     @target   = filter[:target]
   end
-
 
   def target_data
     get_json( format_query )
@@ -19,7 +18,7 @@ class GiphyService
 
   def endpoint
     {
-      search: '/search'
+      search: '/v1/gifs/search'
     }
   end
 
@@ -32,7 +31,7 @@ class GiphyService
   end
 
   def query_term
-    "&q=#{ term.gsub(" ", "%20") }"
+    "&q=#{ term }"
   end
 
   def term
@@ -61,6 +60,7 @@ class GiphyService
       key_param,
       query_term,
       limit,
+      offset,
       rating,
       lang
     ].join

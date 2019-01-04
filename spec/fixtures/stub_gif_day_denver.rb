@@ -3,8 +3,8 @@ module StubGifDayDenver
 
   def url(term)
     url = [
-      base     = 'https://api.giphy.com/v1/gifs/',
-      endpoint = '/search',
+      base     = "https://api.giphy.com/v1/gifs",
+      endpoint = "/search",
       key      = "?api_key=#{ENV['giphy_key']}",
       query    = "&q=#{ term }",
       limit    = "&limit=8",
