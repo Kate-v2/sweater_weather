@@ -1,8 +1,8 @@
-
 require 'rails_helper'
 
 
-RSpec.describe Api::V1::UsersController, type: :controller do
+# RSpec.describe Api::V1::UsersController, type: :controller do
+RSpec.describe "User" do
 
   it 'makes a user' do
 
@@ -11,14 +11,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
     # post :create, params: {user: user_stub}
     url = api_v1_user_path(user: user_stub)
     page.driver.submit(:post, url, {})
-    # ^ displays info, but body is missing & status is not changed
 
-    # save_and_open_page
-    # binding.pry
-
-    # click_link 'redirected'
-    # page.find('a').click
-    # expect(page).to have_content("redirected")
     data = get_json
     expect(response.status).to eq(201)
     expect(data[:api_key]).to  eq(User.last.token)
