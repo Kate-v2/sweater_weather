@@ -6,7 +6,7 @@ module StubGifDayDenver
       base     = 'https://api.giphy.com/v1/gifs/',
       endpoint = '/search',
       key      = "?api_key=#{ENV['giphy_key']}",
-      query    = "&q=#{term}",
+      query    = "&q=#{ term }",
       limit    = "&limit=8",
       offset   = "&offset=0",
       rating   = "&rating=G",

@@ -7,7 +7,6 @@ class GiphyService
     @base_url = 'https://api.giphy.com/v1/gifs/'
     @filter   = filter
     @target   = filter[:target]
-
   end
 
 
@@ -33,7 +32,7 @@ class GiphyService
   end
 
   def query_term
-    "&q=#{ term }"
+    "&q=#{ term.gsub(" ", "%20") }"
   end
 
   def term
@@ -68,7 +67,7 @@ class GiphyService
   end
 
   def get_json(url)
-    response = location_connection.get( url )
+    response = giphy_connection.get( url )
     JSON.parse(response.body, symbolize_names: true)
   end
 
