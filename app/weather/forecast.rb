@@ -3,6 +3,8 @@
 
 class Forecast
 
+  include ModID
+
   def initialize( data )
     @data       = data
     @daily      = data[:daily]

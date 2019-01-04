@@ -2,6 +2,8 @@
 
 class ForecastEndpoint
 
+  include ModID
+
   attr_reader :current, :today, :forecast, :location
 
   def initialize(current, today, forecast, location)

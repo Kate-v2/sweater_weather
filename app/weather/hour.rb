@@ -1,6 +1,8 @@
 
 class Hour
 
+  include ModID
+
   attr_reader :time, :icon, :temperature
 
   def initialize( data )

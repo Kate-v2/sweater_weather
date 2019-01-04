@@ -2,6 +2,8 @@
 
 class Today
 
+  include ModID
+
   attr_reader :time,
               :summary,
               :icon,

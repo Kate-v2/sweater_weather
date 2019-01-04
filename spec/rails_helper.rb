@@ -76,6 +76,9 @@ RSpec.configure do |config|
   Capybara.default_host = 'http://localhost:3000'
   config.include FactoryBot::Syntax::Methods
 
+  # this did not fix missing response.body
+  # config.render_views = true # https://stackoverflow.com/questions/9965945/why-is-jbuilder-not-returning-a-response-body-in-json-when-testing-rspec
+
   include StubGeocodeDenver
   include StubDarkSkyDenver
 

@@ -1,6 +1,8 @@
 
 class Coordinates
 
+  include ModID
+
   attr_reader :city, :state, :country
 
   def initialize(raw)

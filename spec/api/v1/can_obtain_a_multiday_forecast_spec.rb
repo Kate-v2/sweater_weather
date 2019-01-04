@@ -1,25 +1,43 @@
 require 'rails_helper'
 
 
-describe "Can Obtain Forecast Data" do
+RSpec.describe Api::V1::ForecastsController, type: :controller do
 
   let(:location) { "Denver,CO" }
 
   before(:each) do
     stub_geocode_denver
-    visit api_v1_forecasts_path(location: location)
+    stub_dark_sky_denver
   end
 
-  it 'can get location from browser' do
-    skip('Make this a service test')
+  describe '#INDEX' do
+
+    before(:each) do
+      visit api_v1_forecasts_path(location: location)
+    end
+
+    it 'is successful' do
+      expect(response).to be_successful
+    end
+
+    it 'current' do
+      skip
+      binding.pry
+      json = get_json
+
+
+    end
+
+
+
   end
 
-  it 'can get forcast from location' do
-    binding.pry
-    skip('Make this a service test')
-  end
+end
 
+def page_me
+  save_and_open_page
+end
 
-
-
+def get_json
+  JSON.parse(response.body, symbolize_names: true)
 end
