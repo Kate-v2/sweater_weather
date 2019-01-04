@@ -14,14 +14,14 @@ describe "Giphy Service" do
   it 'gets forecast data' do
     target  = { target: :search, term: "Clear throughout the day." }
     giphy   = GiphyService.new( target )
-    data    = giphy.target_data
+    raw     = giphy.target_data
+    data    = raw[:data]
 
-    expect(target.class).to        eq(Hash)
-    data = data[:data]
+    expect(raw.class).to  eq(Hash)
     expect(data.class).to eq(Array)
 
     gif  = data.first
-    expect(gif.keys).to       include(:url)
+    expect(gif.keys).to  include(:url)
     expect(gif[:url]).to eq("https://giphy.com/gifs/water-ocean-sea-ivcVZnZAEqhs4")
   end
 
