@@ -4,24 +4,27 @@ require 'rails_helper'
 describe "ForecastHelper" do
 
   let(:location)    { 'Denver,CO' }
-  let(:coordinates) { '39.7392358,-104.990251' }
   let(:helper)      { ForecastHelper.new(location) }
 
   before(:each) do
+    stub_dark_sky_denver
     stub_geocode_denver
-  end
 
+    # @helper = ForecastHelper.new(location)
+  end
 
   it 'initializes with location' do
     klass  = helper.class
+    # klass  = @helper.class
     expect(klass).to eq(ForecastHelper)
   end
 
-  it 'gets coordinates' do
-    coords = helper.get_coordinates
-    expect(coords).to eq(coordinates)
-  end
+  it 'gets the ForecastEndpoint' do
+    ep = helper.forecast_endpoint
+    # ep = @helper.forecast_endpoint
+    expect(ep.class).to eq(ForecastEndpoint)
 
+  end
 
 
 end
