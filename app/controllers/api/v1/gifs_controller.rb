@@ -5,7 +5,7 @@ class Api::V1::GifsController < ApplicationController
     location = params[:location]
     helper   = GifHelper.new(location)
     gifs     = helper.daily_gifs
-    render json: DailyGifsSerializer.new(gifs)
+    render json: ForecastGifsSerializer.new(gifs)
   end
 
 

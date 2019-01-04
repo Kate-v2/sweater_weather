@@ -13,14 +13,18 @@ class GifHelper
   # use summary field for each day
 
   def daily_gifs
+    ForecastGifs.new( make_gifs )
+  end
+
+  private
+
+  def make_gifs
     @days.map { |day|
       @_term =  day.summary
       url = gif_url
       Gif.new(day, url)
     }
   end
-
-  private
 
   def gif_url
     get_gif.url
