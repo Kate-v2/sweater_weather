@@ -1,6 +1,8 @@
 
 class DarkSkyService
 
+  # make a simple_service.rb class for these to inherit from
+
   def initialize(filter)
     @base_url = 'https://api.darksky.net/'
     @filter   = filter

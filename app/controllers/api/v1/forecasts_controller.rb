@@ -2,8 +2,10 @@
 class Api::V1::ForecastsController < ApplicationController
 
   def index
-    coords = ForecastHelper.new(location).get_coordinates
-
+    helper   = ForecastHelper.new(location)
+    forecast = helper.forecast_endpoint
+    # TO DO - make serializer(s)
+    # render json forecast
     binding.pry
   end
 
