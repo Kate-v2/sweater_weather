@@ -1,9 +1,11 @@
 
 class Location < ApplicationRecord
 
+  belongs_to :favorite
+
   # ASSUMPTION - only US States formatted City, State (no country)
 
-  def self.make_location(location)
+  def self.new_or_existing_location(location)
     make_city_state(location)
     valid  = valid_abbreviation?
     @state = location_tool.state_abbreviation(@state) unless valid

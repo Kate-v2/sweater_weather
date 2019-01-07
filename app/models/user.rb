@@ -6,6 +6,10 @@ class User < ApplicationRecord
   validates_presence_of :password
   has_secure_password
 
+  has_many :favorites
+  has_many :locations, through: :favorites
+
+
   def self.make_user(data)
     base = { email: data[:email], password: data[:password] }
     user = User.new(base)
