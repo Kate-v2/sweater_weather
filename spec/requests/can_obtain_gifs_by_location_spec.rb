@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'api_helper'
 
 RSpec.describe 'Gifs' do
+
+  include APIHelper
 
   before(:each) do
     stub_geocode_denver
@@ -21,7 +24,7 @@ RSpec.describe 'Gifs' do
     get api_v1_gifs_path(location: 'Denver,CO')
 
     expect(response).to be_successful
-    json = JSON.parse(response.body, symbolize_names: true)
+    json = get_json
 
     # Fast JSON is a pain....
     data      = json[:data]
@@ -43,10 +46,3 @@ RSpec.describe 'Gifs' do
   end
 
 end
-
-
-#       {
-#         time: "1546498800",
-#         summary: "Mostly sunny in the morning.",
-#         url: "<GIPHY_URL_GOES_HERE>"
-#       }

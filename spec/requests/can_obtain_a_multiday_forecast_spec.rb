@@ -1,7 +1,10 @@
 require 'rails_helper'
+require 'api_helper'
 
 
 RSpec.describe Api::V1::ForecastsController, type: :controller do
+
+  include APIHelper
 
   let(:location) { "Denver,CO" }
 
@@ -36,8 +39,4 @@ end
 
 def page_me
   save_and_open_page
-end
-
-def get_json
-  JSON.parse(response.body, symbolize_names: true)
 end

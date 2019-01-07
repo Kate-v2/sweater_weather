@@ -1,33 +1,37 @@
 require 'rails_helper'
+require 'api_helper'
 
+RSpec.describe Api::V1::SessionsController, type: :controller do
 
-RSpec.describe "Login User" do
+  include APIHelper
 
-  it 'logs in' do
+  let(:account) { {
+    email:    'email@email.com',
+    password: 'password'
+  } }
 
-    skip("Response.body MISSING")
-
-    account = {
-      email:    'email@email.com',
-      password: 'password'
-    }
-    user = User.create( email: account[:email], password: account[:password], token: '1234abc' )
-
-    url     = '/api/v1/sessions'
-    params  = account.to_json
-    # headers = { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' }
-    page.driver.submit(:post, url, user: params)
-
-    # JSON is visible, but response is inaccessible
-    # save_and_open_page
-    # DOES THIS NEED A STUB ???
-
-    expect(response).to be_successful
-
-    data = JSON.parse(response.body, symbolize_names: true)
-    expect(response.status).to eq(200)
-    expect(data[:api_key]).to  eq(user.token)
+  before(:each) do
+    @user = User.create(  email: account[:email],
+                          password: account[:password],
+                          token: '1234abc' )
+    headers = { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' }
+    request.headers.merge!(headers)
+    json = account.to_json
+    post :create, params: {}, body: json, format: :json, as: :json
   end
 
+  it 'is successful' do
+    expect(response).to be_successful
+  end
+
+  it 'status 200' do
+    expect(response.status).to eq(200)
+  end
+
+  it 'logs in' do
+    raw = get_json
+    data = raw[:data][:attributes]
+    expect(data[:api_key]).to  eq(User.last.token)
+  end
 
 end

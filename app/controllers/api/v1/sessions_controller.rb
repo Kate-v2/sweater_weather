@@ -3,10 +3,10 @@
 class Api::V1::SessionsController < ApplicationController
 
   def create
-    email    = parse_params[:email]
-    password = parse_params[:password]
+    input = parse_params
+    email    = input[:email]
+    password = input[:password]
     @user = User.find_by_email(email)
-    # I think these pieces are actually from the request.body ?
     if @user.authenticate(password)
       new_session
       render_login
@@ -16,7 +16,9 @@ class Api::V1::SessionsController < ApplicationController
   private
 
   def parse_params
-    @json ||= JSON.parse(params[:user], symbolize_names: true)
+    input = params.dup
+    input.slice!(:email, :password)
+    return input
   end
 
   def new_session

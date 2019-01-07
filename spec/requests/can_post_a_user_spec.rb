@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'api_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
+
+  include APIHelper
 
   before(:each) do
     headers = { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' }
@@ -24,15 +27,10 @@ RSpec.describe Api::V1::UsersController, type: :controller do
 
 end
 
-
 def user_stub
   {
     "email": "whatever@example.com",
     "password": "password",
     "password_confirmation": "password"
   }.to_json
-end
-
-def get_json
-  JSON.parse(response.body, symbolize_names: true)
 end
