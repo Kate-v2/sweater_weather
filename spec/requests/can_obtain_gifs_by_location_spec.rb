@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Gifs' do
+RSpec.describe 'Gifs' do
 
   before(:each) do
     stub_geocode_denver
@@ -28,7 +28,7 @@ describe 'Gifs' do
     set       = data[:attributes]
     copyright = set[:copyright]
     gifs      = set[:daily_forecast][:data]
-    
+
     gif       = gifs.first[:attributes]
     time      = gif[:time]
     summary   = gif[:summary]

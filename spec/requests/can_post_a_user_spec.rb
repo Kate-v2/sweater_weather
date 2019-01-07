@@ -1,7 +1,5 @@
 require 'rails_helper'
 
-
-# RSpec.describe Api::V1::UsersController, type: :controller do
 RSpec.describe "User" do
 
   it 'makes a user' do
@@ -9,10 +7,13 @@ RSpec.describe "User" do
     skip("SO CLOSE -- ActionController::UnknownFormat:ActionController::UnknownFormat")
 
     # post :create, params: {user: user_stub}
-    url = api_v1_user_path(user: user_stub)
+    url = api_v1_users_path(user: user_stub)
     page.driver.submit(:post, url, {})
 
-    data = get_json
+    expect(response).to be_successful
+
+    # data = get_json
+    data = JSON.parse(response.body, symbolize_names: true)
     expect(response.status).to eq(201)
     expect(data[:api_key]).to  eq(User.last.token)
   end
@@ -29,13 +30,6 @@ def user_stub
   }.to_json
 end
 
-def get_json
-  JSON.parse(response.body, symbolize_names: true)
-end
-
-# -- Response --
-  # status: 201
-  # body:
-  #   {
-  #     "api_key": "jgn983hy48thw9begh98h4539h4",
-  #   }
+# def get_json
+#   JSON.parse(response.body, symbolize_names: true)
+# end
