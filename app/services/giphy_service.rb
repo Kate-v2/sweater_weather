@@ -26,43 +26,20 @@ class GiphyService
     endpoint[@target]
   end
 
-  def key_param
-    "?api_key=#{ ENV['giphy_key'] }"
-  end
-
-  def query_term
-    "&q=#{ term }"
-  end
-
   def term
     @term ||= @filter[:term]
   end
 
-  def limit
-    "&limit=8"
-  end
-
-  def offset
-    "&offset=0"
-  end
-
-  def rating
-    "&rating=G"
-  end
-
-  def lang
-    "&lang=en"
-  end
 
   def format_query
     [
       target,
-      key_param,
-      query_term,
-      limit,
-      offset,
-      rating,
-      lang
+      key_param    = "?api_key=#{ ENV['giphy_key'] }",
+      query_term   = "&q=#{ term }",
+      limit        = "&limit=8",
+      offset       = "&offset=0",
+      rating       = "&rating=G",
+      lang         = "&lang=en"
     ].join
   end
 

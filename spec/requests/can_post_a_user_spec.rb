@@ -1,25 +1,31 @@
 require 'rails_helper'
+require 'api_helper'
 
+RSpec.describe Api::V1::UsersController, type: :controller do
 
-# RSpec.describe Api::V1::UsersController, type: :controller do
-RSpec.describe "User" do
+  include APIHelper
+
+  before(:each) do
+    headers = { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' }
+    request.headers.merge!(headers)
+    post :create, params: {}, body: user_stub, format: :json, as: :json
+  end
+
+  it 'is successful' do
+    expect(response).to be_successful
+  end
+
+  it 'status 201' do
+    expect(response.status).to eq(201)
+  end
 
   it 'makes a user' do
-
-    skip("SO CLOSE -- ActionController::UnknownFormat:ActionController::UnknownFormat")
-
-    # post :create, params: {user: user_stub}
-    url = api_v1_user_path(user: user_stub)
-    page.driver.submit(:post, url, {})
-
-    data = get_json
-    expect(response.status).to eq(201)
+    raw = get_json
+    data = raw[:data][:attributes]
     expect(data[:api_key]).to  eq(User.last.token)
   end
 
-
 end
-
 
 def user_stub
   {
@@ -28,14 +34,3 @@ def user_stub
     "password_confirmation": "password"
   }.to_json
 end
-
-def get_json
-  JSON.parse(response.body, symbolize_names: true)
-end
-
-# -- Response --
-  # status: 201
-  # body:
-  #   {
-  #     "api_key": "jgn983hy48thw9begh98h4539h4",
-  #   }

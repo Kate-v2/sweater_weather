@@ -15,13 +15,16 @@ class User < ApplicationRecord
     user
   end
 
-  def generate_api_key
-    key = self.token = SecureRandom.base64
-    generate_api_key if User.find_by_token(key)
-  end
-
   def confirm(confirmation)
     password == confirmation
+  end
+
+
+  # private
+  def generate_api_key
+    api_key = self.token = SecureRandom.base64
+    generate_api_key if User.find_by_token(api_key)
+    api_key
   end
 
 end

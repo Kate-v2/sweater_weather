@@ -28,11 +28,8 @@ class ForecastHelper
   # NOTE - forecast will not include null values does not include key if no data
   # ==== KEYS are NOT always the same! ====
   def get_forecast
-    @_darksky ||= DarkSkyService.new( forecast_target ).target_data
-  end
-
-  def forecast_target
     target = { target: :forecast, location: get_coordinates }
+    @_darksky ||= DarkSkyService.new( target ).target_data
   end
 
 
@@ -47,13 +44,9 @@ class ForecastHelper
   end
 
   def get_location
-    @_google ||= GoogleService.new( location_target ).target_data
-  end
-
-  def location_target
     target = { target: :address, location: @city_state }
+    @_google ||= GoogleService.new( target ).target_data
   end
-
 
 
 end
