@@ -3,11 +3,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get  'forecasts', to: 'forecasts#index'
-      post 'user',      to: 'users#create'
-      # get  'user',      to: 'users#show'
-      get 'gifs',       to: 'gifs#index' 
-      # /api/v1/gifs?location=denver,co
+      resources :forecasts, only: [:index]
+      resources :gifs,      only: [:index]
+      resources :users,     only: [:create]
+      resources :sessions,  only: [:create]
     end
   end
 
