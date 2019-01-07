@@ -19,9 +19,6 @@ class User < ApplicationRecord
     password == confirmation
   end
 
-  def authenticate(input)
-    input == self.password
-  end
 
   # private
   def generate_api_key
