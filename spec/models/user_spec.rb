@@ -31,6 +31,11 @@ RSpec.describe User, type: :model do
       expect(@user.confirm(confirm)).to eq(false)
     end
 
+    it 'authenticates user for login' do
+      input = "password"
+      expect(@user.authenticate(input)).to eq(true)
+    end
+
   end
 
 
