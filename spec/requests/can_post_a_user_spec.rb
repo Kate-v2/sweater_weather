@@ -1,21 +1,8 @@
 require 'rails_helper'
 
-# RSpec.describe "User" do
-# RSpec.describe "User", type: :request do
 RSpec.describe Api::V1::UsersController, type: :controller do
-# RSpec.describe Api::V1::UsersController, type: :request do
-# RSpec.describe Api::V1::UsersController do
 
   before(:each) do
-    # post :create, {user: user_stub}
-    # post :create, params: {user: user_stub}
-    # post api_v1_users_path(params:{user: user_stub}, headers: headers)
-    # post api_v1_users_path(user: user_stub)
-
-
-    # url = api_v1_users_path(user: user_stub)
-    # page.driver.submit(:post, url, {})
-
     headers = { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' }
     request.headers.merge!(headers)
     post :create, params: {}, body: user_stub, format: :json, as: :json
@@ -30,7 +17,7 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   it 'makes a user' do
-    raw = JSON.parse(response.body, symbolize_names: true)
+    raw = get_json
     data = raw[:data][:attributes]
     expect(data[:api_key]).to  eq(User.last.token)
   end
@@ -46,6 +33,6 @@ def user_stub
   }.to_json
 end
 
-# def get_json
-#   JSON.parse(response.body, symbolize_names: true)
-# end
+def get_json
+  JSON.parse(response.body, symbolize_names: true)
+end
