@@ -62,6 +62,7 @@ require 'webmock/rspec'
 # end
 require './spec/fixtures/stub_geocode_denver'
 require './spec/fixtures/stub_dark_sky_denver'
+require './spec/fixtures/stub_gif_day_denver'
 require 'capybara/rails'
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures" # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -81,5 +82,6 @@ RSpec.configure do |config|
 
   include StubGeocodeDenver
   include StubDarkSkyDenver
+  include StubGifDayDenver
 
 end
