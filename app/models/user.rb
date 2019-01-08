@@ -6,6 +6,10 @@ class User < ApplicationRecord
   validates_presence_of :password
   has_secure_password
 
+  has_many :favorites
+  has_many :locations, through: :favorites
+
+
   def self.make_user(data)
     base = { email: data[:email], password: data[:password] }
     user = User.new(base)
@@ -15,16 +19,18 @@ class User < ApplicationRecord
     user
   end
 
-  def confirm(confirmation)
-    password == confirmation
-  end
-
-
-  # private
+  # TODO - make this private -- affects tests & factorybot
+  # AND above method
   def generate_api_key
     api_key = self.token = SecureRandom.base64
     generate_api_key if User.find_by_token(api_key)
     api_key
   end
+
+  # TODO - make this private -- affects tests AND above method
+  def confirm(confirmation)
+    password == confirmation
+  end
+
 
 end

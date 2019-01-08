@@ -10,6 +10,11 @@ RSpec.describe User, type: :model do
     it { should validate_uniqueness_of :token }
   end
 
+  describe "Relationships" do
+    it { should have_many :favorites }
+    it { should have_many :locations }
+  end
+
   describe 'Method' do
 
     before(:each) do

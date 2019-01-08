@@ -12,11 +12,6 @@ class Api::V1::UsersController < ApplicationController
     render json: NewUserSerializer.new(@user), status: 201
   end
 
-
-  def new_user_json
-    NewUserSerializer.new(@user)
-  end
-
   def new_user
     input = params.dup
     input.slice!(:email, :password, :password_confirmation)
