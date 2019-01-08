@@ -7,6 +7,11 @@ RSpec.describe Location, type: :model do
     it { should validate_presence_of :state_short}
   end
 
+  describe "Relationships" do
+    it { should have_many :favorites}
+    it { should have_many :users}
+  end
+
   describe 'Methods' do
 
     it 'NEW - new_or_existing_location' do

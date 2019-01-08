@@ -3,7 +3,8 @@ class Location < ApplicationRecord
 
   validates_presence_of :city, :state_short
 
-  # has_many :favorites
+  has_many :favorites
+  has_many :users, through: :favorites
 
   # ASSUMPTION - only US States formatted City, State (no country)
 
