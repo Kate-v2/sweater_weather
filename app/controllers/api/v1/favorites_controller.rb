@@ -1,10 +1,16 @@
 
 class Api::V1::FavoritesController < ApplicationController
 
+  before_action :user_by_token
+
+  def index
+    favorites = @user.favorites
+    render json UserFavoritesSerializer.new(favorites)
+  end
+
 
   def create
     new_favorite
-    @user = User.find_by_token( @input[:api_key] )
     @user ? make_new_favorite : (head 401)
   end
 
@@ -19,7 +25,8 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def new_favorite
-    @input ||= params.dup.slice!(:location, :api_key)
+    # @input ||= params.dup.slice!(:location, :api_key)
+    @input ||= params.dup.slice!(:location)
   end
 
 
