@@ -19,6 +19,14 @@ class User < ApplicationRecord
     user
   end
 
+  def specific_favorite(location)
+    # This should also confirm that state is in the short format
+    city, state = location.split(','); state.gsub!(' ', '')
+    self.favorites.joins(:location)
+                  .where(locations: {city: city, state_short: state})
+                  .first
+  end
+
   # TODO - make this private -- affects tests & factorybot
   # AND above method
   def generate_api_key

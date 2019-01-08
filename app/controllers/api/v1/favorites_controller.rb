@@ -6,16 +6,26 @@ class Api::V1::FavoritesController < ApplicationController
   def index
     if @user && !@user.favorites.empty?
       favorites = FavoritesFacade.new(@user.favorites).current_weathers
-      render json: UserFavoritesSerializer.new(favorites), status: 200
+      render json: UserFavoritesSerializer.new(favorites), status: ok(true)
     else
-      head 401
+      unauth
     end
   end
 
-
   def create
     new_favorite
-    @user ? make_new_favorite : (head 401)
+    @user ? make_new_favorite : unauth
+  end
+
+  def destroy
+      if @user && @fav = @user.specific_favorite(params[:location])
+        favorite = FavoritesFacade.new([@fav]).current_weathers
+        @fav.delete
+        render json: UserFavoritesSerializer.new(favorite), status: ok(true)
+        # redirect_to get: :index  #--> this gives 302 and html redirect 
+      else
+        unauth
+      end
   end
 
 
@@ -25,7 +35,7 @@ class Api::V1::FavoritesController < ApplicationController
     location = Location.new_or_existing_location( @input[:location] )
     favorite = @user.favorites.create(location: location)
     # No Return Render
-    favorite.id ? (head 201) : (head 401)
+    favorite.id ? creation : unauth
   end
 
   def new_favorite

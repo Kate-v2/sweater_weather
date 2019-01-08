@@ -5,5 +5,18 @@ class ApplicationController < ActionController::Base
     @user ||= User.find_by_token( params[:api_key])
   end
 
+  def unauth(view = nil)
+    view ? 401 : (head 401)
+  end
+
+  def creation(view = nil)
+    view ? 201 : (head 201)
+  end
+
+  def ok(view = nil)
+    view ? 200 : (head 200)
+  end
+
+
 
 end
