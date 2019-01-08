@@ -19,16 +19,18 @@ class User < ApplicationRecord
     user
   end
 
-  def confirm(confirmation)
-    password == confirmation
-  end
-
-
-  # private
+  # TODO - make this private -- affects tests & factorybot
+  # AND above method
   def generate_api_key
     api_key = self.token = SecureRandom.base64
     generate_api_key if User.find_by_token(api_key)
     api_key
   end
+
+  # TODO - make this private -- affects tests AND above method
+  def confirm(confirmation)
+    password == confirmation
+  end
+
 
 end
