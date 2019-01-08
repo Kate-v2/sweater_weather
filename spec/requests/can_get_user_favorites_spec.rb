@@ -1,15 +1,20 @@
 require 'rails_helper'
 require 'api_helper'
 
+require './spec/fixtures/stub_favorites'
+
 RSpec.describe Api::V1::FavoritesController, type: :controller do
 
   include APIHelper
+  include StubFavorites
 
   let(:user)   { create(:user, token: '123abc') }
   let(:body)    { { api_key: user.token }.to_json }
   let(:headers) { { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' } }
 
   before(:each) do
+    stub_favorite_denver
+    stub_favorite_golden
     request.headers.merge!(headers)
   end
 
