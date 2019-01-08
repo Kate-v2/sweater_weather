@@ -48,7 +48,6 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
       loc2 = Location.create(city: "Golden", state_short: "CO", coordinates: '39.755543,-105.2210997')
       user.favorites.create(location: loc1 )
       user.favorites.create(location: loc2 )
-      # request.headers.merge!(headers)
       # Get doesn't seem to convey a body
       # get :index, params: {}, body: body, format: :json, as: :json
       post :index, params: {}, body: body, format: :json, as: :json
