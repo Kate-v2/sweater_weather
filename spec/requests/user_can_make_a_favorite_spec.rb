@@ -8,6 +8,10 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
   let(:body) { { location: 'Denver, CO', api_key: "123abc" } }
   let(:headers) { { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' } }
 
+  before(:each) do
+    stub_geocode_denver
+  end
+
   it 'failure' do
     user      = create(:user, token: "123abc")
     request.headers.merge!(headers)

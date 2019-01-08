@@ -4,8 +4,12 @@ class Api::V1::FavoritesController < ApplicationController
   before_action :user_by_token
 
   def index
-    favorites = @user.favorites
-    render json UserFavoritesSerializer.new(favorites)
+    if @user && !@user.favorites.empty?
+      favorites = FavoritesFacade.new(@user.favorites).current_weathers
+      render json: UserFavoritesSerializer.new(favorites), status: 200
+    else
+      head 401
+    end
   end
 
 
@@ -25,6 +29,7 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def new_favorite
+    # This is less necessary now that api_key is moved to ApplicationController
     # @input ||= params.dup.slice!(:location, :api_key)
     @input ||= params.dup.slice!(:location)
   end

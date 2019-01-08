@@ -5,6 +5,7 @@ RSpec.describe Location, type: :model do
   describe "Validations" do
     it { should validate_presence_of :city}
     it { should validate_presence_of :state_short}
+    it { should validate_presence_of :coordinates}
   end
 
   describe "Relationships" do
@@ -12,7 +13,11 @@ RSpec.describe Location, type: :model do
     it { should have_many :users}
   end
 
-  describe 'Methods' do
+  describe 'Creation' do
+
+    before(:each) do
+      stub_geocode_denver
+    end
 
     it 'NEW - new_or_existing_location' do
       expect(Location.count).to eq(0)
@@ -50,6 +55,5 @@ RSpec.describe Location, type: :model do
     end
 
   end
-
 
 end
