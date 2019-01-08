@@ -6,10 +6,10 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
   include APIHelper
 
   let(:body) { { location: 'Denver, CO', api_key: "123abc" } }
+  let(:headers) { { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' } }
 
   it 'failure' do
     user      = create(:user, token: "123abc")
-    headers   = { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' }
     request.headers.merge!(headers)
     incorrect = body.dup; incorrect[:api_key] = "incorrect"
     json      = incorrect.to_json
@@ -35,12 +35,12 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
       expect(response.status).to eq(201)
     end
 
-    it 'makes a favorite' do
-      skip('no return render ?')
-      # raw = get_json
-      # data = raw[:data][:attributes]
-      # expect(data[ ]).to  eq( )
-    end
+    # it 'makes a favorite' do
+    #   skip('no return render ?')
+    #   # raw = get_json
+    #   # data = raw[:data][:attributes]
+    #   # expect(data[ ]).to  eq( )
+    # end
 
   end
 

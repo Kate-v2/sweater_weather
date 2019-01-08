@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Location, type: :model do
 
+  describe "Validations" do
+    it { should validate_presence_of :city}
+    it { should validate_presence_of :state_short}
+
+  end
+
   describe 'Methods' do
 
     it 'NEW - new_or_existing_location' do
@@ -18,7 +24,7 @@ RSpec.describe Location, type: :model do
       expect(Location.last.id).to eq(location.id)
     end
 
-    it 'can use longs state name' do
+    it 'can use long state name' do
       Location.new_or_existing_location("Denver, Colorado")
       expect(Location.count).to eq(1)
       expect(Location.last.state_short).to eq("CO")
