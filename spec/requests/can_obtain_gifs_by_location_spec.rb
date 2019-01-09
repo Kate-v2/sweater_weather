@@ -26,13 +26,12 @@ RSpec.describe 'Gifs' do
     expect(response).to be_successful
     json = get_json
 
-    # Fast JSON is a pain....
     data      = json[:data]
     set       = data[:attributes]
     copyright = set[:copyright]
-    gifs      = set[:daily_forecast][:data]
+    gifs      = set[:daily_gifs]
 
-    gif       = gifs.first[:attributes]
+    gif       = gifs.first
     time      = gif[:time]
     summary   = gif[:summary]
     url       = gif[:url]
