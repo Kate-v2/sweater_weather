@@ -3,6 +3,7 @@ Ruby Version: 2.4.1
 Rails Version: 5.2.2
 
 Gems:
+*Production*
 * pg
 * puma
 * sass-rails
@@ -22,6 +23,13 @@ Gems:
 * faker
 * geocode
 * city-state
+*Test / Dev*
+* byebug
+* rspec-rails
+* pry
+* simplecov
+* capybara
+
 
 Test Suite: RSpec
 
