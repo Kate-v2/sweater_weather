@@ -22,9 +22,10 @@ class Forecast
     @days ||= @daily_set.map { |day| Day.new(day) }
   end
 
+
   private
 
-    attr_reader :hourly, :daily
+  attr_reader :hourly, :daily
 
 
 end

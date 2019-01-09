@@ -21,6 +21,14 @@ class Coordinates
     "#{lat},#{lng}"
   end
 
+  def json
+    {
+      city:    city,
+      state:   state,
+      country: country
+    }
+  end
+
   # These can be left as hashes
   # def city #   @city[:long_name] # end
   # def state_long #   @state[:long_name] # end

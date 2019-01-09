@@ -16,7 +16,6 @@ RSpec.describe Api::V1::ForecastsController, type: :controller do
   describe '#INDEX' do
 
     before(:each) do
-      # visit api_v1_forecasts_path(location: location)
       get :index, params: {location: location}, body: nil, format: :json, as: :json
     end
 
@@ -26,7 +25,9 @@ RSpec.describe Api::V1::ForecastsController, type: :controller do
 
     it 'current' do
       json = get_json
-      skip
+      binding.pry
+
+      # skip
 
     end
 

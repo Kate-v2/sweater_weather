@@ -12,4 +12,12 @@ class Hour
     @temperature = data[:temperature]
   end
 
+  def json
+    {
+      time:        time,
+      icon:        icon,
+      temperature: temperature
+    }
+  end
+
 end

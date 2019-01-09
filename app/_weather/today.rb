@@ -33,6 +33,19 @@ class Today
   end
 
 
+  def json
+    {
+      time:       time,
+      summary:    summary,
+      icon:       icon,
+      low:        low,
+      high:       high,
+      humidity:   humidity,
+      visibility: visibility,
+      uv_index:   uv_index
+    }
+  end
+
   private
 
   attr_reader :data

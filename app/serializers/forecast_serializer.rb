@@ -5,7 +5,7 @@ class ForecastSerializer
 
   attributes  :id
 
-  attribute :hours do |object|
+  attribute :hourly do |object|
     hours = object.hours
     HourSerializer.new(hours)
   end
