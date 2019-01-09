@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     view ? 200 : (head 200)
   end
 
+  def no_content(view = nil)
+    view ? 204 : (head 204)
+  end
+
 
 
 end
