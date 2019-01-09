@@ -7,7 +7,6 @@ describe "Day" do
   let(:data) { JSON.parse( file, symbolize_names: true )[:daily][:data].first }
   let(:day)  { Day.new(data) }
 
-
   it 'it initializes from DarkSky sub-hash' do
     expect(day.class).to eq(Day)
   end

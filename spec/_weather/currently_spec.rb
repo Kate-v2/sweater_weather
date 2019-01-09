@@ -3,11 +3,9 @@ require 'rails_helper'
 
 describe "Currently" do
 
-  # let(:currently) { Currently.new(stub_currently) }
   let(:file)      { File.read(stub_dark_sky_denver_path) }
   let(:data)      { JSON.parse( file, symbolize_names: true )[:currently] }
   let(:currently) { Currently.new(data) }
-
 
   it 'it initializes from DarkSky sub-hash' do
     expect(currently.class).to eq(Currently)
