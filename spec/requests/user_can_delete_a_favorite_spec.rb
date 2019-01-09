@@ -37,13 +37,7 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
       stub_favorite_golden
     end
 
-    # it 'returns 401 if deletes a favorite and there are NO FAVORITES' do
-    #   expect(Favorite.count).to eq(1)
-    #   delete :destroy, params: {id: user}, body: @json, format: :json, as: :json
-    #   expect(Favorite.count).to eq(0)
-    #   # expect(response.status).to eq(401)
-    #   expect(response.status).to eq(200)
-    # end
+    # Test for when there are no favorites remaining ?
 
     describe "More than one favorite" do
 
@@ -57,22 +51,23 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
         expect(response).to be_successful
       end
 
-      it 'status 200' do
+      it 'status 204' do
         delete :destroy, params: {id: user}, body: @json, format: :json, as: :json
-        expect(response.status).to eq(200)
+        expect(response.status).to eq(204)
       end
 
       # Do we want to redirect to index or show the removed favorite ?
-      it 'deletes a favorite AND returns that deleted favorite' do
-        expect(Favorite.count).to eq(2)
-        delete :destroy, params: {id: user}, body: @json, format: :json, as: :json
-        expect(Favorite.count).to eq(1)
-        raw  = get_json[:data]
-        data = raw.first[:attributes]
-        expect(raw.count).to eq(1)
-        expect(data[:location]).to            eq("Denver,CO")
-        expect(data[:current_weather]).to_not be(nil)
-      end
+      # just returning 204
+      # it 'deletes a favorite AND returns that deleted favorite' do
+      #   expect(Favorite.count).to eq(2)
+      #   delete :destroy, params: {id: user}, body: @json, format: :json, as: :json
+      #   expect(Favorite.count).to eq(1)
+      #   raw  = get_json[:data]
+      #   data = raw.first[:attributes]
+      #   expect(raw.count).to eq(1)
+      #   expect(data[:location]).to            eq("Denver,CO")
+      #   expect(data[:current_weather]).to_not be(nil)
+      # end
     end
 
   end

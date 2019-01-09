@@ -1,20 +1,6 @@
 
 module StubGifDayDenver
 
-  def url(term)
-    url = [
-      base     = "https://api.giphy.com/v1/gifs",
-      endpoint = "/search",
-      key      = "?api_key=#{ENV['giphy_key']}",
-      query    = "&q=#{ term }",
-      limit    = "&limit=8",
-      offset   = "&offset=0",
-      rating   = "&rating=G",
-      lang     = "&lang=en"
-    ].join
-  end
-
-
   def stub_gif_day1_denver_path
     "./spec/fixtures/api/v1/gif_days/denver_day1_gif.json"
   end
@@ -112,6 +98,19 @@ module StubGifDayDenver
       to_return(body: File.read(stub_gif_day8_denver_path))
   end
 
+  private
 
+  def url(term)
+    url = [
+      base     = "https://api.giphy.com/v1/gifs",
+      endpoint = "/search",
+      key      = "?api_key=#{ENV['giphy_key']}",
+      query    = "&q=#{ term }",
+      limit    = "&limit=8",
+      offset   = "&offset=0",
+      rating   = "&rating=G",
+      lang     = "&lang=en"
+    ].join
+  end
 
 end

@@ -3,8 +3,7 @@ require 'rails_helper'
 
 describe "Hour" do
 
-  let(:file) { File.read(stub_dark_sky_denver_path) }
-  let(:data) { JSON.parse( file, symbolize_names: true )[:hourly][:data].first }
+  let(:data) { make_json[:hourly][:data].first }
   let(:hour)  { Hour.new(data) }
 
 
@@ -18,4 +17,17 @@ describe "Hour" do
     expect(hour.temperature).to eq(data[:temperature])
   end
 
+  it 'makes a hash for json' do
+    json = hour.json
+    expect(json.class).to eq(Hash)
+    expect(hour.time).to        eq(json[:time])
+    expect(hour.icon).to        eq(json[:icon])
+    expect(hour.temperature).to eq(json[:temperature])
+  end
+
+end
+
+def make_json
+  file = File.read(stub_dark_sky_denver_path)
+  JSON.parse( file, symbolize_names: true )
 end

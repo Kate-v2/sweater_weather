@@ -8,13 +8,11 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
   include APIHelper
   include StubFavorites
 
-  let(:user)   { create(:user, token: '123abc') }
+  let(:user)    { create(:user, token: '123abc') }
   let(:body)    { { api_key: user.token }.to_json }
   let(:headers) { { 'CONTENT_TYPE': 'application/json', 'ACCEPT': 'application/json' } }
 
   before(:each) do
-    stub_favorite_denver
-    stub_favorite_golden
     request.headers.merge!(headers)
   end
 
@@ -40,12 +38,12 @@ RSpec.describe Api::V1::FavoritesController, type: :controller do
 
   describe "Success" do
 
+    let(:loc1) { Location.create(city: "Denver", state_short: "CO", coordinates: '39.7392358,-104.990251') }
+    let(:loc2) { Location.create(city: "Golden", state_short: "CO", coordinates: '39.755543,-105.2210997') }
+
     before(:each) do
       stub_favorite_denver
       stub_favorite_golden
-
-      loc1 = Location.create(city: "Denver", state_short: "CO", coordinates: '39.7392358,-104.990251')
-      loc2 = Location.create(city: "Golden", state_short: "CO", coordinates: '39.755543,-105.2210997')
       user.favorites.create(location: loc1 )
       user.favorites.create(location: loc2 )
       # Get doesn't seem to convey a body

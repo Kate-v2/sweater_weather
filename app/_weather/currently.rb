@@ -1,8 +1,6 @@
 
 class Currently
 
-  include ModID
-
   attr_reader :time, :summary, :icon, :temperature, :feels_like
 
   def initialize( data )

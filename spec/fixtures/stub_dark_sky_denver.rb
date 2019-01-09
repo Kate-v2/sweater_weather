@@ -12,7 +12,7 @@ module StubDarkSkyDenver
     coords = '39.7392358,-104.990251'
     url   = base + query + key + coords
     stub_request(:get, url).
-      to_return(body: File.read(stub_dark_sky_denver_path))
+      to_return(body: File.read( stub_dark_sky_denver_path ) )
   end
 
 

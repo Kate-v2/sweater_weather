@@ -21,8 +21,9 @@ class Api::V1::FavoritesController < ApplicationController
       if @user && @fav = @user.specific_favorite(params[:location])
         favorite = FavoritesFacade.new([@fav]).current_weathers
         @fav.delete
-        render json: UserFavoritesSerializer.new(favorite), status: ok(true)
-        # redirect_to get: :index  #--> this gives 302 and html redirect 
+        no_content
+        # render json: UserFavoritesSerializer.new(favorite), status: ok(true)
+        # redirect_to get: :index  #--> this gives 302 and html redirect
       else
         unauth
       end
