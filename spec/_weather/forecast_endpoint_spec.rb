@@ -4,12 +4,11 @@ require 'rails_helper'
 describe "ForecastEndpoint" do
 
 
-  let(:currently)   { double('Currently')   }
-  let(:today)       { double('Today') }
-  let(:forecast)    { double('Forecast')}
-  let(:location)    { double('Location')}
+  let(:currently)   { double('Currently') }
+  let(:today)       { double('Today')     }
+  let(:forecast)    { double('Forecast')  }
+  let(:location)    { double('Location')  }
   let(:forecast_ep) { ForecastEndpoint.new( currently, today, forecast, location) }
-
 
   it 'it initializes from objects' do
     expect(forecast_ep.class).to eq(ForecastEndpoint)
