@@ -2,8 +2,6 @@
 
 class Gif
 
-  include ModID
-
   attr_reader :url, :time, :summary
 
   def initialize( day, url )

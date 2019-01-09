@@ -1,8 +1,6 @@
 
 class Coordinates
 
-  include ModID
-
   def initialize(raw)
     @data        = raw[:results].first
     @coordinates = @data[:geometry][:location]
