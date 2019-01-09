@@ -26,3 +26,8 @@ Gems:
 Test Suite: RSpec
 
 Endpoints:
+* api/v1/forecasts
+* api/v1/gifs
+* api/v1/users   (:create)
+* api/v1/sessions (:create)
+* api/v1/favorites (:create, :index, :destroy)
