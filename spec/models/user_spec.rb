@@ -63,6 +63,18 @@ RSpec.describe User, type: :model do
       expect(found.state_short).to eq(loco1.state_short)
       expect(found.coordinates).to eq(loco1.coordinates)
     end
+
+    describe 'Private or Class Methods' do
+
+      it 'class - does not make_user' do
+        user = spy('user')
+        expect(user).to have_not_received(:make_user)
+      end
+
+
+    end
+
+
   end
 
 end
