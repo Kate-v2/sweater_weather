@@ -1,24 +1,24 @@
 # README
+Ruby Version: 2.4.1
+Rails Version: 5.2.2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Gems:
+* pg
+* puma
+* sass-rails
+* uglifier
+* mini_racer
+* coffee-rails
+* jbuilder
+* redis
+* bcrypt
+* mini_magick
+* capistrano-rails
+* bootsnap
+* figaro
+* faraday
+* fast_jsonapi
+* factory_bot_rails
+* faker
+* geocode
+* city-state
