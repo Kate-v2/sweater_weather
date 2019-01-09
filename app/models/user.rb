@@ -27,6 +27,7 @@ class User < ApplicationRecord
                   .first
   end
 
+
   # TODO - make this private -- affects tests & factorybot
   # AND above method
   def generate_api_key
