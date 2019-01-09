@@ -6,13 +6,11 @@ class ForecastEndpointSerializer
   attribute :id
 
   attribute :current do |object|
-    current = object.current
-    CurrentlySerializer.new(current)
+    current = object.current.json
   end
 
   attribute :today do |object|
-    today = object.today
-    TodaySerializer.new(today)
+    today = object.today.json
   end
 
   attribute :forecast do |object|
@@ -21,8 +19,7 @@ class ForecastEndpointSerializer
   end
 
   attribute :location do |object|
-    location = object.location
-    LocationSerializer.new(location)
+    location = object.location.json
   end
 
 

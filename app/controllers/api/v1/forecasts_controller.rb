@@ -3,7 +3,7 @@ class Api::V1::ForecastsController < ApplicationController
 
   def index
     forecast   = ForecastHelper.new(location).forecast_endpoint
-    render json: ForecastEndpointSerializer.new(forecast)
+    render json: ForecastEndpointSerializer.new(forecast), status: ok(true)
   end
 
 

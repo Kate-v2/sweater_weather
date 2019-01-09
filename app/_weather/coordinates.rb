@@ -3,31 +3,23 @@ class Coordinates
 
   include ModID
 
-  attr_reader :city, :state, :country
-
   def initialize(raw)
     @data        = raw[:results].first
     @coordinates = @data[:geometry][:location]
     @location    = @data[:address_components]
-
-    # make this more dynamic --> dig ?
-    @city    = @location[0]
-    # @county  = @location[1]
-    @state   = @location[2]
-    @country = @location[3]
   end
 
   def pair
     "#{lat},#{lng}"
   end
 
-  # These can be left as hashes
-  # def city #   @city[:long_name] # end
-  # def state_long #   @state[:long_name] # end
-  # def state_short #   @state[:short_name] # end
-  # def country_long #   @county[:long_name] # end
-  # def country_short #   @county[:long_name] # end
-
+  def json
+    {
+      city:    city,
+      state:   state,
+      country: country
+    }
+  end
 
   private
 
@@ -38,5 +30,31 @@ class Coordinates
   def lng
     @coordinates[:lng]
   end
+
+  # These are accessible to serializer even though they're private ... ?
+
+  # make this more dynamic --> dig ?
+  def city
+    c = @location[0]
+    c.delete(:types)
+    c
+  end
+
+  # @county  = @location[1]
+
+  def state
+    s = @location[2]
+    s.delete(:types)
+    s
+  end
+
+  def country
+    c = @location[3]
+    c.delete(:types)
+    c
+  end
+
+
+
 
 end

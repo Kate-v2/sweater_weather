@@ -5,6 +5,11 @@ class ForecastHelper
     @city_state = location
   end
 
+  def forecast_for_gif
+    forecast
+  end
+
+
   def forecast_endpoint
     ForecastEndpoint.new( current, today, forecast, location )
   end

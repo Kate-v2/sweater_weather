@@ -25,6 +25,16 @@ class Currently
     # @tonight_description
   end
 
+  def json
+    {
+      time:        time,
+      summary:     summary,
+      icon:        icon,
+      temperature: temperature,
+      feels_like:  feels_like
+    }
+  end
+
   private
 
     attr_reader :data

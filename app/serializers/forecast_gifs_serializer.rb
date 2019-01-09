@@ -3,12 +3,7 @@ class ForecastGifsSerializer
 
   include FastJsonapi::ObjectSerializer
 
-  attribute :id
-
-  attribute :daily_forecast do |arr|
-    gifs = arr.collection
-    DailyGifSerializer.new(gifs)
-  end
+  attributes :id, :daily_gifs
 
   attribute :copyright { Date.today.year }
 

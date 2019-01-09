@@ -5,14 +5,12 @@ class ForecastSerializer
 
   attributes  :id
 
-  attribute :hours do |object|
-    hours = object.hours
-    HourSerializer.new(hours)
+  attribute :hourly do |object|
+    hours = object.json_hours
   end
 
   attribute :days do |object|
-    days = object.days
-    DaySerializer.new(days)
+    days = object.json_days
   end
 
 

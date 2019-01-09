@@ -4,18 +4,22 @@ class Gif
 
   include ModID
 
-  attr_reader :url, :time, :summary, :copyright
+  attr_reader :url, :time, :summary
 
   def initialize( day, url )
     @url       = url
     @day       = day
     @time      = day.time
     @summary   = day.summary
-    # this is for the collection, not each
-    # @copyright = Date.today.year
   end
 
-
+  def json
+    {
+      url:     url,
+      time:    time,
+      summary: summary
+    }
+  end
 
 
 

@@ -17,4 +17,16 @@ class Day
     @high               = data[:temperatureHigh]
   end
 
+  def json
+    {
+      time:               time,
+      icon:               icon,
+      summary:            summary,
+      precip_probability: precip_probability,
+      precip_type:        precip_type,
+      low:                low,
+      high:               high
+    }
+  end
+
 end

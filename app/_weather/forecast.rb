@@ -22,9 +22,18 @@ class Forecast
     @days ||= @daily_set.map { |day| Day.new(day) }
   end
 
+
+  def json_hours
+    hours.map { |h| h.json }
+  end
+
+  def json_days
+     days.map { |d| d.json  }
+   end
+
   private
 
-    attr_reader :hourly, :daily
+  attr_reader :hourly, :daily
 
 
 end
