@@ -7,7 +7,6 @@ class Favorite < ApplicationRecord
 
   validates_uniqueness_of :location, scope: [:user]
 
-  # TO DO - Test me
   def joint_location
     "#{city},#{state_short}"
   end
