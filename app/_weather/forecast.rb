@@ -23,6 +23,14 @@ class Forecast
   end
 
 
+  def json_hours
+    hours.map { |h| h.json }
+  end
+
+  def json_days
+     days.map { |d| d.json  }
+   end
+
   private
 
   attr_reader :hourly, :daily

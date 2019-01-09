@@ -56,12 +56,11 @@ RSpec.describe Api::V1::ForecastsController, type: :controller do
 
     it 'forecast - hourly' do
       forecast = @json[:forecast][:data]
-
-      hourly   = forecast[:attributes][:hourly][:data]
+      hourly   = forecast[:attributes][:hourly]
       expect(hourly).to_not   be(nil)
       expect(hourly.count).to eq(49)
 
-      hour = hourly.first[:attributes]
+      hour = hourly.first
       expect(hour[:time]).to        eq(1546556400)
       expect(hour[:icon]).to        eq("clear-day")
       expect(hour[:temperature]).to eq(51.58)
@@ -70,11 +69,11 @@ RSpec.describe Api::V1::ForecastsController, type: :controller do
     it 'forecast - daily' do
       forecast = @json[:forecast][:data]
 
-      days   = forecast[:attributes][:days][:data]
+      days   = forecast[:attributes][:days]
       expect(days).to_not   be(nil)
       expect(days.count).to eq(8)
 
-      day = days.first[:attributes]
+      day = days.first
       expect(day[:icon]).to               eq("clear-day")
       expect(day[:summary]).to            eq("Clear throughout the day.")
       expect(day[:precip_probability]).to eq(0.02)
