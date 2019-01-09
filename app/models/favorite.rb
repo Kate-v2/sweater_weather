@@ -9,7 +9,6 @@ class Favorite < ApplicationRecord
 
   # TO DO - Test me
   def joint_location
-    # "#{location.city},#{location.state_short}"
     "#{city},#{state_short}"
   end
 
