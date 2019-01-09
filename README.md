@@ -22,3 +22,7 @@ Gems:
 * faker
 * geocode
 * city-state
+
+Test Suite: RSpec
+
+Endpoints:
