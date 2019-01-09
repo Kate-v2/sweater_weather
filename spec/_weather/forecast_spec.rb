@@ -27,6 +27,26 @@ describe "Forecast" do
     expect(days.first.class).to eq(Day)
   end
 
+  it 'has a collection of hashes for each hour' do
+    json = forecast.json_hours
+    first = json.first
+    expect(json.class).to  eq(Array)
+    expect(json.count).to  eq(49)
+    expect(first.class).to eq(Hash)
+
+    # These are tested in hour_spec and in the request
+    # expect(first[:icon]).to         eq("clear-day")
+    # expect(first[:temperature]).to  eq(51.58)
+    # expect(first[:time]).to         eq(1546556400)
+  end
+
+  it 'has a collection of hashes for each day' do
+    json = forecast.json_days
+    first = json.first
+    expect(json.class).to  eq(Array)
+    expect(json.count).to  eq(8)
+    expect(first.class).to eq(Hash)
+  end
 
 
 end
