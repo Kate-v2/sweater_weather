@@ -26,26 +26,31 @@ describe "Coordinates" do
 
     it 'private - does not lat' do
       coord = spy('coordinates')
+      expect(coordinates.send(:lat)).to_not be_falsey
       expect(coord).to have_not_received(:lat)
     end
 
     it 'private - does not lng' do
       coord = spy('coordinates')
+      expect(coordinates.send(:lng)).to_not be_falsey
       expect(coord).to have_not_received(:lng)
     end
 
     it 'private - does not city' do
       coord = spy('coordinates')
+      expect(coordinates.send(:city)).to_not be_falsey
       expect(coord).to have_not_received(:city)
     end
 
     it 'private - does not state' do
       coord = spy('coordinates')
+      expect(coordinates.send(:state)).to_not be_falsey
       expect(coord).to have_not_received(:state)
     end
 
     it 'private - does not country' do
       coord = spy('coordinates')
+      expect(coordinates.send(:country)).to_not be_falsey
       expect(coord).to have_not_received(:country)
     end
 
