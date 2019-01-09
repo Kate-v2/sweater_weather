@@ -3,13 +3,10 @@ class Coordinates
 
   include ModID
 
-  # attr_reader :city, :state, :country
-
   def initialize(raw)
     @data        = raw[:results].first
     @coordinates = @data[:geometry][:location]
     @location    = @data[:address_components]
-
   end
 
   def pair
