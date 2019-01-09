@@ -8,9 +8,6 @@ class Location < ApplicationRecord
 
   # Location should be deleted if it has no favorites/users
 
-  # delegate :city,   to: :favorites
-  # delegate :state_short, to: :favorites
-
   # ASSUMPTION - only US States formatted City, State (no country)
   # If I only store coordinate, I can always have a location (anywhere)
   # HOWEVER, favorites#index needs to display a location string

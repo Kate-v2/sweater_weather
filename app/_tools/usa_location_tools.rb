@@ -1,6 +1,8 @@
 
 class USALocationTools
 
+  # TO DO - TEST ME
+
   def initialize
     # CS is the citystate gem
     @states = CS.states(:us)
