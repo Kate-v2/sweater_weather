@@ -4,9 +4,8 @@ class GifHelper
   include ModID
 
   def initialize( location )
-    @forecast = ForecastHelper.new(location).forecast_endpoint
-    # This object is overkill, we'd probably want to refactor
-    @days = @forecast.forecast.days
+    @forecast = ForecastHelper.new(location).forecast_for_gif
+    @days = @forecast.days
   end
 
   def daily_gifs
