@@ -5,8 +5,4 @@ class HourSerializer
 
   attributes :id, :time, :icon, :temperature
 
-  # attribute :hour { |h|
-  #   h.json
-  # }
-
 end
