@@ -56,4 +56,40 @@ RSpec.describe Location, type: :model do
 
   end
 
+  describe 'Private & Class Methods' do
+
+    it 'class - does not receive new_or_existing_location' do
+      location = spy('location')
+      expect(location).to have_not_received(:new_or_existing_location)
+    end
+
+    it 'class & private - does not get_coordinates' do
+      location = spy('location')
+      expect(location).to have_not_received(:get_coordinates)
+    end
+
+    it 'class & private - does not get_geocode' do
+      location = spy('location')
+      expect(location).to have_not_received(:get_geocode)
+    end
+
+    it 'class & private - does not make_city_state_pair' do
+      location = spy('location')
+      expect(location).to have_not_received(:make_city_state_pair)
+    end
+
+    it 'class & private - does not location_tool' do
+      location = spy('location')
+      expect(location).to have_not_received(:location_tool)
+    end
+
+    it 'class & private - does not new_location' do
+      location = spy('location')
+      expect(location).to have_not_received(:new_location)
+    end
+
+
+
+  end
+
 end
