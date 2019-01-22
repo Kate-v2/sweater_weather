@@ -1,3 +1,10 @@
+This app is deployed at https://sweater-weather-api-app.herokuapp.com/
+
+The landing page has information about how to hit each JSON endpoint.
+
+
+
+
 # README
 Ruby Version: 2.4.1
 Rails Version: 5.2.2
