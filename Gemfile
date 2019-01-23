@@ -26,6 +26,8 @@ gem 'faker'
 gem 'geocoder'
 gem 'city-state'                # https://github.com/loureirorg/city-state
 
+gem 'rack-cors', require: 'rack/cors'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw] # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails', '~> 3.8'
