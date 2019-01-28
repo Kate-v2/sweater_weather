@@ -1,6 +1,7 @@
 
 class Api::V1::FavoritesController < ApplicationController
 
+  skip_before_action :verify_authenticity_token
   before_action :user_by_token
 
   def index
