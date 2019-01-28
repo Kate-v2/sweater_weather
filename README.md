@@ -268,6 +268,49 @@ Body:
 ```
 ```
 --- Response ---
+{
+    "data": [
+        {
+            "id": "0",
+            "type": "user_favorites",
+            "attributes": {
+                "location": "Denver,CO",
+                "current_weather": {
+                    "data": {
+                        "time": 1548701191,
+                        "summary": "Light Snow",
+                        "icon": "snow",
+                        "nearestStormDistance": 0,
+                        "precipIntensity": 0.007,
+                        "precipIntensityError": 0.002,
+                        "precipProbability": 0.97,
+                        "precipType": "snow",
+                        "temperature": 23.88,
+                        "apparentTemperature": 19.02,
+                        "dewPoint": 18.2,
+                        "humidity": 0.79,
+                        "pressure": 1026.39,
+                        "windSpeed": 3.75,
+                        "windGust": 7.08,
+                        "windBearing": 124,
+                        "cloudCover": 0.93,
+                        "uvIndex": 2,
+                        "visibility": 2.17,
+                        "ozone": 306.37
+                    },
+                    "time": 1548701191,
+                    "summary": "Light Snow",
+                    "icon": "snow",
+                    "temperature": 23.88,
+                    "feels_like": 19.02
+                }
+            }
+        }
+    ]
+    ...
+    + additional favorite locations with forecast
+    ...
+}
 
 ```
 
